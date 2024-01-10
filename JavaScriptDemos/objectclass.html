@@ -1,0 +1,36 @@
+<html>
+    <body>
+        <script>
+            class Person{
+                constructor(id = 0, name = 0, address = "Aundh"){
+                    console.log("in Person constructor");
+                    this.id = id;
+                    this.name = name;
+                    this.address = address;
+                }
+                display(){
+                    console.log(`id: ${this.id} name: ${this.name} address: ${this.address}`);
+                }
+            }
+
+            class Employee extends Person{
+                constructor(id=0, name="", address="Aundh", dept = "hr", desg = "manager", sal = 20000){
+                    super(id,name,address);
+                    console.log("in Employee constuctor");
+                    this.dept = dept;
+                    this.desg = desg;
+                    this.sal = sal;  
+                }
+                display(){
+                    super.display();
+                    console.log(`dept:${this.dept} desg:${this.desg} sal:${this.sal} netsal:${this.calculatesal()}`);
+                }
+                calculatesal(){
+                    return this.sal+ 0.08*this.sal+ 0.10*this.sal- 0.11*this.sal; 
+                }
+            }
+            ob = new Employee(12,"Revati", "Aundh", "UX", "designer",345678);
+            ob.display();
+        </script>
+    </body>
+</html>

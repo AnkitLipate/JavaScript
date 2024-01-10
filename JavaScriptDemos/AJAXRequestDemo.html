@@ -1,0 +1,52 @@
+<html>
+    <head>
+        <script>
+            function displayData(arr){
+                str = "<table border='2'><tr><th>user id</th><th>title</th><th>Body</th></tr>";
+                    for(user of arr){
+                        str +=`<tr><td>${user.userId}</td><td>${user.title}</td><td>${user.body}</td></tr>`;
+                    }
+                str+= "</table>";
+                document.getElementById("mydiv").innerHTML = str;
+            }
+
+            function getdata(){
+                //1. create XMLHttpRequest object
+                var xhr;
+                if(window.XMLHttpRequest){
+                    xhr = new XMLHttpRequest();
+                }else{ //mozila, 
+                    xhr = new ActiveXObject("Microsoft.XMLHTTP");
+                }
+
+                //2. generate request
+                xhr.open("GET","https://jsonplaceholder.typicode.com/posts/",true);
+                //3. configure XMLHttpRequest Object by assigning a function to onreadystatechange
+                xhr.onreadystatechange = function(){
+                    alert(xhr.readyState);
+                    if(xhr.readyState==4 && xhr.status==200){
+                        alert(xhr.responseText);
+                        //json to javascript
+                        ob = JSON.parse(xhr.responseText)      
+                        console.log(xhr.responseText);
+                        //document.getElementById("mydiv").innerHTML = xhr.responseText;
+                        //5. once data is received display it in page
+                        displayData(ob);
+                    }   
+                }
+                //4. send the request
+                xhr.send();
+                
+            }
+        </script>
+    </head>
+    <body>
+        <form>
+            Id: <input type="text" name="id" id="id">
+            <button type="button" name="btn1" onclick="getdata()">get data</button>
+        </form>
+        <div id="mydiv">
+
+        </div>
+    </body>
+</html>

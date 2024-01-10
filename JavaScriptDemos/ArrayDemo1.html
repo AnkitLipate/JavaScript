@@ -1,0 +1,43 @@
+<html>
+    <body>
+        <script>
+            function f1(a){
+                return a > 20;
+            }
+            arr = new Array(10,45,20,30,40,50, "a","b")
+            arr.push(20); //add element at the end
+            document.write("Selected Value: "+arr.find((x, index, arr) => {
+                console.log(x);
+                return x>20;
+            }));
+            document.write("Value: "+arr.find(x=> x > 20)+"<br>")//will return the actual value that satisfies
+            document.write("Index: "+arr.findIndex(x => x > 20)+"<br>") // will return the position where condition 
+            document.write("filter - finds all numbers: "+arr.filter((x, index) => {
+                console.log(index +"---->"+ x); 
+                return x > 15 && x % 4==0;
+            }));
+
+            for(var i=0; i< arr.length; i++){
+                document.write(arr[i]+"<br>")
+            }
+
+            for(var x of arr){
+                document.write(x + "<br>")
+            }
+
+            arr.forEach((x, index, arr)=>{
+                document.write(index + "---->"+ x +"<br>")
+                //document.write(`${index}---->${x}<br>`);
+            });   
+            
+            arr = [10,20,30]
+            document.write(arr.map(x => x*x));
+
+            //arr.reduce(callback(accumulator, currentValue, currentIndex, array),initialValue)
+            document.write("reduce to sum of values"+arr.reduce((x,y)=> x+y, 0));
+
+            arr1 = ["Python", "Pearl", "Java", "C++", ".Net"]
+            document.write("<br>"+arr1.reduce((x,y)=>x+y, "")+"<br>");
+        </script>
+    </body>
+</html>

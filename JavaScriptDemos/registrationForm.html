@@ -1,0 +1,165 @@
+<html>
+    <head>
+        <style>
+            input:focus{
+                background-color: yellow;
+            }
+        </style>
+        <script>
+            function validateGenderData(){
+                genarr = document.getElementsByName("gender");
+                for(i=0; i<genarr.length; i++){
+                    if(genarr[i].checked){
+                        document.getElementById("generr").innerHTML = "";
+                        return true;
+                    }
+                }
+                document.getElementById("generr").innerHTML = "please select gender";
+                return false;
+            }
+            function validatedegree(){
+                var degreearr = document.getElementsByName("degree");
+            /*    for(var i=0;i<degreearr.length; i++){
+                    if(degreearr[i].checked){
+                        document.getElementById("degerr").innerHTML = "";
+                        return true;
+                    }
+                    
+                }*/
+                for(var ob of degreearr){
+                    if(ob.checked){
+                        document.getElementById("degerr").innerHTML = "";
+                        return true;
+                    }
+                }
+                document.getElementById("degerr").innerHTML = "please select degree";
+                return false;
+            }
+            function validateHobbies(){
+                hbarr = document.getElementsByName("hobies");
+                cnt = 0;
+                for(var i=0; i<hbarr.length; i++){ 
+                    if(hbarr[i].checked){
+                        cnt++;
+                    }
+                    if(cnt == 2){
+                        document.getElementById("hberr").innerHTML = "";
+                        return true;
+                    }
+                }
+                document.getElementById("hberr").innerHTML = "please select minimum 2 hobies";
+                return false; 
+            }
+           /*   for(var ob of hbarr){
+                    if(ob.checked){
+                        cnt++;
+                    }
+                    if(cnt == 2){
+                        document.getElementById("hberr").innerHTML = "";
+                        return true;
+                    }
+                }
+                document.getElementById("hberr").innerHTML = "please select minimum 2 hobies";
+                return false; 
+            }*/
+            function validatedata(){
+                flag = validateGenderData();
+                flag1 = validatedegree();
+                flag2 = validateHobbies();
+                if(flag && flag1 && flag2){
+                    return true
+                }
+                else
+                return false;
+            }
+        </script>
+    </head>
+    <body>
+        <table>
+        <form method="get">
+            <tr>
+                <td><label for="nm">Name :</label></td>
+                <td><input type="text" name="name" id="nm" placeholder="Enter Name" required minlength="3" required maxlength="8"><span style="color:red">*</span></td>
+            </tr>
+            <tr>
+                <td><label for="age">Age :</label></td>
+                <td><input type="number" name="age" id="age" placeholder="Enter Age" required min="18" max="60"><span style="color:red">*</span></td>
+            </tr>
+            <tr>
+                <td><label for="address">Address :</label></td>
+                <td><textarea name="address" id="address" cols="30" rows="5"></textarea></td>
+            </tr>
+            <tr>
+                <td><label for="jdate">Join Date :</label></td>
+                <td><input type="date" name="jdate" id="jdate" ></td>
+            </tr>
+            <tr>
+                <td><label for="gender"></label>Gender :</td>
+                <td>
+                <fieldset>
+                    <legend>Gender :</legend>
+                    <input type="radio" name="gender" id="male" 
+                    ><span><label for="Male" >Male</label></span> <br>
+                    <input type="radio" name="gender" id="female"><span><label for="Female">Female</label></span>
+                </fieldset>
+                </td>
+                <td id="generr"></td>
+            </tr>
+            <tr>
+                <td><label for="degree"></label>Degree :</td>
+                <td>
+                <fieldset>
+                    <legend>Enter Degree :</legend>
+                    <input type="radio" name="degree" id="BE" ><span><label for="BE">BE</label></span> <br>
+                    <input type="radio" name="degree" id="BTech"><span><label for="BTech">BTech</label></span><br>
+                    <input type="radio" name="degree" id="MTech"><span><label for="MTech">MTech</label></span>
+                </fieldset>
+                </td>
+                <td id="degerr"></td>
+            </tr>
+            <tr>
+                <td><label for="city">City :</label></td>
+                <td>
+                    <select name="city" id=city">
+                        <option value="">---select one City---</option>
+                        <option value="Pune">Pune</option>
+                        <option value="Nagpur">Nagpur</option>
+                        <option value="Nashik">Nashik</option>
+                        <option value="Mumbai">Mumbai</option>
+                        <option value="Chandrapur">Chandrapur</option>
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <td><label for="hobies"></label>Hobies :</td>
+                <td>
+                <fieldset>
+                    <legend>Enter Hobies :</legend>
+                    <input type="checkbox" name="hobies" id="Reading" ><span><label for="BE">Reading</label></span> <br>
+                    <input type="checkbox" name="hobies" id="Biking"><span><label for="BTech">Biking</label></span><br>
+                    <input type="checkbox" name="hobies" id="Sleeping"><span><label for="MTech">Sleeping</label></span><br>
+                    <input type="checkbox" name="hobies" id="Eating"><span><label for="MTech">Eating</label></span><br>
+                    <input type="checkbox" name="hobies" id="Treking"><span><label for="MTech">Treking</label></span>
+                </fieldset>
+                </td>
+                <td id="hberr"></td>
+            </tr>
+            <tr>
+                <td><label for="mobile">Mobile No :</label></td>
+                <td>+91<input type="text" name="mobile" id="mobile" placeholder="Enter Mobile No" required pattern="[789]\d{9}"><span style="color:red">*</span></td>
+            </tr>
+            <tr>
+                <td><label for="email">Enter Email :</label></td>
+                <td><input type="email" name="email" id="email" placeholder="Enter email" ></td>
+            </tr>
+            <tr>
+                <td></td>
+                <td><button type="button" name="btn" value="btn1" onclick="validatedata()">Login</button></td>
+                <td><button type="reset" name="btn" value="btn2" >Clear</button></td>
+            </tr>
+        </form>
+        </table>
+    </body>
+
+
+</html>

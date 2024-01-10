@@ -1,0 +1,93 @@
+<html>
+    <head>
+        <script>
+            var names = ["Ashu", "Deepa", "Sangeeta"];
+            /*function managedata(){
+                
+            }*/
+
+            displaydata=()=>{
+                str = "<ol>";
+                        for(var nm of names){
+                            str+="<li>"+nm+"</li>";
+                           // str+=`<li>${nm}</li>`;
+                        }
+                        str+="</ol>";
+                        document.getElementById("mydiv").innerHTML=str;
+            }
+
+            managedata = function(){
+                //validate that text box is not empty and radio button is selected
+                //array of all buttons references
+                arr=document.getElementsByName("action");
+                for(var i=0; i<arr.length; i++){
+                    if(arr[i].checked){
+                        var op = arr[i].value;
+                        break;
+                    }
+                }
+                switch(op){
+                    case "add":
+                        nm=document.getElementById("nm").value;
+                        names.push(nm);
+                        console.log(names);
+                        displaydata();
+                        break;
+                    case "Delete" :
+                        nm = document.getElementById("nm").value;
+                        pos = names.indexOf(nm);
+                        if(pos !=-1){
+                            names.splice(pos,1);  //delete first occurence
+                          //names = names.filter(x=>x!=nm)//to delete all occurances
+                            console.log(names);
+                            displaydata();
+                        }else{
+                            alert("Name not found!!!")
+                        }
+                        break;
+                    case "Modify" :
+                        nm = document.getElementById("nm").value;
+                        newnm = prompt("Enter new name");
+                        pos = names.indexOf(nm);
+                        if(pos !=-1){
+                            names.splice(pos, 1, newnm);// delete first occurance and replace  it with 
+                            displaydata();
+                        }else{ 
+                            alert("Name not found!!!!")
+                        }
+                        break;
+                    case "DispalyAll" :
+                    displaydata();
+                        break;
+                    case "Search" :
+                         nm = document.getElementById("nm").value;
+                         pos = names.findIndex(x=>x == nm);
+                         if(pos !=-1){
+                            alert(`The name found at ${pos+1} position`);
+                         }else
+                            alert(`Name ${nm} not found`)
+                         
+                        break;
+                }
+            }
+            /*
+            managedata=()=>{
+
+            }
+            */
+        </script>
+    </head>
+    <body>
+        <form>
+            Name : <input type="text" name="name" id="nm" placeholder="enter name">
+            <input type="radio" name="action" id="add" value="add"><label for="add">Add</label>
+            <input type="radio" name="action" id="Delete" value="Delete"><label for="Delete">Delete</label>
+            <input type="radio" name="action" id="Modify" value="Modify"><label for="Modify">Modify</label>
+            <input type="radio" name="action" id="DisplayAll" value="DisplayAll"><label for="DisplayAll">DisplayAll</label>
+            <input type="radio" name="action" id="Search" value="Search"><label for="Search">Search</label>
+            <button type="button" name="btn" id="btn1" onclick="managedata()">do action</button>
+            <button type="button" name="btn" id="btn2">clear</button>
+            <div id="mydiv"></div>
+        </form>
+    </body>
+</html>

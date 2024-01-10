@@ -1,0 +1,48 @@
+<html>
+    <head>
+        <script>
+            var interval1;
+            var cnt = 30;
+            function showdate(){
+                dt = new Date();
+               // alert(typeof(dt));
+                document.getElementById('mydiv').innerHTML= dt;
+                document.getElementById('mydiv').innerHTML+="<h3>"+ cnt+"</h3>";
+                cnt--;
+               /* day1 = dt.getDay();//week day number
+                day = dt.getDate();// this will display 1-31
+                month = dt.getMonth();//month counting starts with 0-january
+                year = dt.getFullYear();
+                alert(`${day}-${month+1}-${year}`);*/
+            }
+            function assignDate(){
+                //this will call showDate function after every 1 sec till we clear the interval
+                interval1 = setInterval(showdate, 1000)
+            }
+            function stopDate(){
+                //this will clear the interval and stop calling function 
+                clearInterval(interval1);
+            }
+            /*function displayAlert(){
+                alert("Hello World!!!");
+            }*/
+            function delaycall(){
+                //setTimeOut will call this function after 10 sec only once
+                tm1 = setTimeout(()=>{
+                    alert("Hello, swap bhai")
+                },10000);
+                //setTimeout(displayAlert,10000);
+            }
+            function removedelay(){
+                //setTimeOut will call this function after 10 sec only once
+                clearTimeOut(tm1);
+            }
+        </script>
+    </head>
+    <body>
+        <div id="mydiv"></div>
+        <button type="button" name="btn1" onclick="assignDate()">show date</button>
+        <button type="button" name="btn2" onclick="stopDate()">stop date</button>
+        <button type="button" name="btn3" onclick="delaycall()">setTimeOut</button>
+    </body>
+</html>

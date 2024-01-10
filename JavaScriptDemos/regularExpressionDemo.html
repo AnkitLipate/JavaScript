@@ -1,0 +1,39 @@
+<html>
+    <body>
+        <script>
+            str1 = "test, this is test";
+            console.log("Search gives position: "+str1.search(/test/g));
+            console.log("match gives string: "+str1.match(/test/g));
+            console.log("match gives String: "+str1.match(/some/g));
+            console.log("search gives position: "+str1.search(/some/g));
+
+            //Regular Expresion object
+            str3 = "Something is there somewhere";
+            let pattern = /s.*e/i; //regular expresion object
+            console.log("test will true or false: "+pattern.test(str3));
+            console.log("exec will true or false: "+pattern.exec(str3))
+            
+            str3 = "Something is there somewhere";
+            let pattern1 = /s.*?e/i; //regular expresion object
+            console.log("test will true or false: "+pattern1.test(str3));
+            console.log("exec will true or false: "+pattern1.exec(str3))
+
+
+
+            str4 = "KLFS is a training and financial consultancy, Run by , Anil and kishori";
+            pattern3 = /s.*,/;
+            console.log(pattern3.test(str4)); //true
+            console.log(pattern3.exec(str4)); //give you upto last occurance
+            console.log(/s(.*?),/.exec(str4)); //upto first occurence
+
+
+            str5 = "this is testing 1234";
+            str6 = "this not ending with digit";
+            patter4 = /\d$/;
+            console.log(patter4.test(str5)); //true
+            console.log(patter4.test(str6)); //false
+            console.log(patter4.exec(str5));
+            console.log(patter4.exec(str6));
+        </script>
+    </body>
+</html>

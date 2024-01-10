@@ -1,0 +1,38 @@
+<html>
+    <head>
+        <script>
+            var count = 0;
+            function addnewtextbox(){
+                count++;
+                alert("in add new textbox")
+                const para = document.createElement("p");  //<p> </p>
+                const data = document.createTextNode("This is para");
+                para.setAttribute("id", "p" +count)
+                //create input tag
+                const inp = document.createElement("input");//<input>
+                inp.setAttribute("type", "text");//<input type="text">
+                inp.setAttribute("name","nm"); //<input type="text" name="nm"> 
+                para.appendChild(data);
+                mydiv = document.getElementById("myparent");
+                mydiv.appendChild(para);
+                mydiv.appendChild(inp);
+            }
+            function assignevent(){
+                //assign addnewtextbox function as click event handler programatically
+                document.getElementById("btn2").addEventListener("click", addnewtextbox);
+            }
+            function removeevent(){
+                //assign addnewtextbox function as click event handler programatically
+                document.getElementById("btn2").removeEventListener("click", addnewtextbox);
+            }
+        </script>
+    </head>
+    <body>
+        <button type="button" name="btn" id="btn1" onclick="assignevent()">assign event</button>
+        <button type="button" name="btn" id="rebtn1" onclick="removeevent()">remove event</button>
+        <button type="button" name="btn" id="btn2">get event</button>
+        <div id="myparent">
+
+        </div>
+    </body>
+</html>

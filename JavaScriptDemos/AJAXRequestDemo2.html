@@ -1,0 +1,114 @@
+<html>
+    <head>
+        <script>
+            function displayData(arr){
+                str = "<table border='2'><tr><th>id</th><th>userid</th><th>title</th><th>complete</th></tr>";
+                    for(task of arr){
+                        str +=`<tr><td>${task.id}</td><td>${task.userId}</td><td>${task.title}</td><td>${task.completed}</td></tr>`;
+                    }
+                str+= "</table>";
+                document.getElementById("mydiv").innerHTML = str;
+            }
+            function displaydetails(ob){
+                str = "Id : "+ob.id+"<br>";
+                str+="user Id : "+ob.userId+"<br>"+"Title : "+ob.title+"<br>"+"Status : "+ob.completed;
+                document.getElementById("mydiv2").innerHTML = str;
+            }
+
+            function getdetailsbyid(){
+                //create object
+                var xhr = new XMLHttpRequest();
+
+                //2. generate request
+                var id = document.getElementById("id").value;
+                var url = "https://jsonplaceholder.typicode.com/todos/"+id;
+                console.log(url);
+                xhr.open("GET","https://jsonplaceholder.typicode.com/todos",true);
+                //3. configure XMLHttpRequest Object by assigning a function to onreadystatechange
+                xhr.onreadystatechange = function(){
+                    //alert(xhr.readyState);
+                    if(xhr.readyState==4 && xhr.status==200){
+                        alert(xhr.responseText); //responseXML
+                        //json to javascript
+                        ob = JSON.parse(xhr.responseText)
+                    displaydetails(ob);
+                    
+                    }
+                }
+            }
+
+            function displaydropdown(arr){
+                str = "<select id='tid' name='tid'><option>----select one id----</option> ";
+                    for(task of arr){
+                        str+=`<option value='${task.id}'>${task.id}</option>`;
+                    }
+                str+="</select>";
+                document.getElementById("dropdown").innerHTML=str;
+            }
+
+            function getdata(){
+                //1. create XMLHttpRequest object
+                var xhr;
+                if(window.XMLHttpRequest){
+                    xhr = new XMLHttpRequest();
+                }else{ //mozila, 
+                    xhr = new ActiveXObject("Microsoft.XMLHTTP");
+                }
+
+                //2. generate request
+                xhr.open("GET","https://jsonplaceholder.typicode.com/todos",true);
+                //3. configure XMLHttpRequest Object by assigning a function to onreadystatechange
+                xhr.onreadystatechange = function(){
+                    //alert(xhr.readyState);
+                    if(xhr.readyState==4 && xhr.status==200){
+                        alert(xhr.responseText); //responseXML
+                        //json to javascript
+                        ob = JSON.parse(xhr.responseText)      
+                        //console.log(xhr.responseText);
+                        //document.getElementById("mydiv").innerHTML = xhr.responseText;
+                        //5. once data is received display it in page
+                        displayData(ob);
+                        displaydropdown(ob); //display dropdown of id
+                    }   
+                }
+                //4. send the request
+                xhr.send();
+                
+            }
+        </script>
+    </head>
+    <body>
+        <div>
+        <pre>
+            AJAX Asynchronous Javascript and XML
+    javascript provides XMLHttpRequest object and it also helps to send the AJAX request
+    members
+            readyState -----1,2,3,4
+            responseText ----- this will give data in json
+            responseXML ------ this will give data in XML
+        status
+        open()----- generate request for sending ------assign readyState 1
+        send()----- this will send the request and assign readyState =2
+                    readyState =3----receiving the data has started but not completed
+                    readyState=4-----receiving of data is over or we will receive error
+        onreadystatechange----it will be called every time when value of readyState changes
+        </pre>
+        <form>
+            Id: <input type="text" name="id" id="id">
+            <div id="dropdown">
+
+            </div>
+            <button type="button" name="btn" id="btn2" onclick="getdetailsbyid()">get data by id</button>
+            <button type="button" name="btn" id="btn1" onclick="getdata()">send ajax request</button>
+        </form>
+        </div>
+        <br>
+        <br>
+        <div id="mydiv" style="float: left; border:2px solid red; width:400px; height:400px;">
+
+        </div>
+        <div id="mydiv2" style="margin-left:500px; border:2px solid red; width:400px; height: 400px;">
+
+        </div>
+    </body>
+</html>

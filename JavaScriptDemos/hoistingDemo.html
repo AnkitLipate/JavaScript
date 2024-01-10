@@ -1,0 +1,12 @@
+<html>
+    <body>
+        <script>
+            //var b will be automatically hoisted and will be initialized to undefined
+            console.log(b);//undefined
+            var b=20;
+            //let does not support hoisting so the following line will give error
+            console.log(c);//error
+            let c=20;
+        </script>
+    </body>
+</html>

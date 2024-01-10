@@ -1,0 +1,16 @@
+<html>
+    <body>
+        <script>
+            arr =[10, 11, 1, 2, 5, 18, 20];
+            function compare(a,b){
+                return b-a;
+            }
+            //document.write(arr.sort((a,b)=>a-b));
+            document.write(arr.sort(compare));
+            arr.pop();
+            document.write("<br>" + arr);
+            arr.push();
+            document.write("<br>" + arr);
+        </script>
+    </body>
+</html>

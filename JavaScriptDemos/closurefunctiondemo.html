@@ -1,0 +1,24 @@
+<html>
+    <body>
+        <script>
+            //self calling function, it get executed only once
+            (function(){
+                alert("in self calling function, will get called only once");
+            })();
+            function f1(){
+                a = 10;
+                b = 20;
+                //it is function which is nested function 
+                // and has access to the variables which are in it's parent scope then it is called 
+                //closure function
+                function f2(){
+                    return a+b;
+                }
+                s = f2();
+                alert("Addition is "+s);
+                f = f2(); 
+            }
+            f1();
+        </script>
+    </body>
+</html>

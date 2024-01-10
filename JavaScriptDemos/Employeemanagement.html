@@ -1,0 +1,50 @@
+<html>
+    <head>
+        <script>
+            let emparr = [{ 
+                id: 111,
+                name: "Kishori",
+                address: "aundh"
+            }];
+            function displayData(){
+                str = "<table border='2'><tr><th>Employee Id</th><th>Employee Name</th><th>Address</th></tr>";
+                    for(emp of emparr){
+                        str +=`<tr><td>${emp.id}</td><td>${emp.name}</td><td>${emp.address}</td></tr>`;
+                    }
+                str+= "</table>";
+                document.getElementById("mydiv").innerHTML = str;
+            }
+            function addnewEmployee(){
+                id = parseInt(document.getElementById("id").value);
+                name = document.getElementById("nm").value;
+                address = document.getElementById("addr").value;
+                //var e = {id:id, name:name, address:address};
+                var e = {id,name,address};
+                emparr.push(e);
+                console.log(emparr);
+                document.getElementById("id").value="";
+                document.getElementById("nm").value="";
+                document.getElementById("addr").value="";
+                displayData();
+            }
+
+            function searchEmployee(){
+                id = parseInt(document.getElementById("id").value);
+                ob = emparr.find(x=>x.id==id); //[{id:11, name:a},{id:12, name:b},{id:13, name:c}]
+                console.log(`id: ${ob.id} name: ${ob.name}`);
+            }
+        </script>
+    </head>
+    <body onload="displayData()">
+        <form>
+            Id: <input type="text" name="id" id="id"> <br>
+            Name: <input type="text" name="nm" id="nm"> <br>
+            Address: <input type="text" name="addr" id="addr"><br>
+            <button type="button" name="btn1" id="btn1" onclick="addnewEmployee()">add new Employee</button>
+            <button type="button" name="btn2" id="btn2" onclick="searchEmployee()">Search Employee</button> 
+        </form>
+        <div id="mydiv">
+
+        </div>
+    </body>
+</html>

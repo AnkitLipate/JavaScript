@@ -1,0 +1,31 @@
+<html>
+    <head>
+        <style>
+            .init{
+                background-color: cyan;
+                width: 300px;
+                height: 400px;
+                border: 1px solid red;
+            }
+
+            .myclass{
+                background-color: blue;
+                width: 400px;
+                height: 500px;
+                border: 1px solid red;
+                color: white;
+                font-size: 40px; 
+            }
+        </style>
+        <script>
+            function changeclass(clsnm){
+                document.getElementById("div1").className = clsnm;
+            } 
+        </script>
+    </head>
+    <body>
+        <div class="init" id="div1" onmouseover="changeclass('myclass')" onmouseout="changeclass('init')">
+            <p>This is para</p>
+        </div>
+    </body>
+</html>
